@@ -1,7 +1,15 @@
 # MarvelousDesigner_Obj_Seq_To_FBX
 
 ## Are you suffering from a piles of obj sequence?
-Here is a perfect solution! **Just add this blend add-on** and convert obj sequence to a single fbx file!  
+Here is a perfect solution! **Just add this blend add-on** and convert obj sequence to a single fbx file!   
+  
+Marvelous Designer is a wonderful tool for 3D clothes. But it does not allow to export clothes animation in FBX format.  
+With this add-on we can export clothes animation in obj sequence from marvelous designer and merge them into a single fbx file.
+
+Here are pros of merging  
+1. Saving Storage **(466MB (700frames obj sequence) => 39.5MB (single fbx file))**
+2. Handling **a single file is a lot easier** than handling hundreds of files.
+
 | OBJ Sequence |  | Single FBX file |
 |:---:|:---:|:---:|
 |<img src="images/OBJSequence.png" width="400" height="500"> | >>> | <img src="images/SingleFBX.png" width="150" height="150">|  
