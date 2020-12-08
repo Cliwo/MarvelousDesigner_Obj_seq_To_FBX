@@ -75,21 +75,26 @@ def export(obj, output_path):
     bpy.ops.export_scene.fbx(filepath=output_path, use_selection = True)
 
 def convert_obj_seq_to_fbx(dir_path, output_path, output_file_name):
+    #    1. Load All OBJ files.
     seq_objs = load_objs(dir_path)
-    
     base = seq_objs[0]
     
+    #    2. Add Default Shape Key
     set_shape_key(obj = base, shape_key_source = base, name = 'Basis', add_vertices = False)
     base.data.shape_keys.use_relative = False
+    #    3. Add Other Shake Keys
     for i in range(1, len(seq_objs)):
         set_shape_key(obj = base, shape_key_source = seq_objs[i], name = 'Deform' + str(i))
 
     base_mesh = bpy.data.meshes[get_base_obj_name(dir_path)]
     base.data.shape_keys.use_relative = True
 
-    for i in range(1, len(seq_objs)): 
-        add_shape_key_animation(base_mesh = base_mesh, name = 'Deform' + str(i), index = i)
+    #    4. Set shape key weights
+    add_shape_key_animation(base_mesh = base_mesh, name = 'Basis', index = 1)
+    for i in range(1, len(seq_objs)):
+        add_shape_key_animation(base_mesh = base_mesh, name = 'Deform' + str(i), index = i+1)
 
+    #    5. Add Action
     add_action(base, len(seq_objs))
     
     for o in bpy.data.objects:
